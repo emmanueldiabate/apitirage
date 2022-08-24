@@ -1,21 +1,30 @@
 package com.binomeapi.apitirage.service;
 
 import com.binomeapi.apitirage.modele.Listpost;
-import lombok.AllArgsConstructor;
+import com.binomeapi.apitirage.repository.ListpostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class ListpostServiceImpl implements ListpostService{
+
+    @Autowired
+    ListpostRepository listpostRepository;
+
     @Override
-    public Listpost importer(Listpost listpost) {
-        return null;
+    public Listpost creer(Listpost listpost) {
+        return listpostRepository.save(listpost);
     }
 
     @Override
-    public List<Listpost> lire() {
-        return null;
+    public List<Listpost> lister() {
+        return listpostRepository.findAll();
+    }
+
+    @Override
+    public Listpost trouverListeParLibelle(String libelle) {
+        return listpostRepository.findByLibelle(libelle);
     }
 }

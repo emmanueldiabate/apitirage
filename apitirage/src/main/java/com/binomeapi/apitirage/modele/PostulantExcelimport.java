@@ -5,29 +5,26 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PostulantExcelimport {
-    public List<Postulant> excelImport() {
+public class PostulantExcelimport{
+
+    public List<Postulant> excelImport(MultipartFile fichier) {
         List <Postulant> postulantList = new ArrayList<>();
 
-
+        String mail="";
         String nom="";
         String prenom="";
-        long numero=0;
-        String mail="";
-
-        String excelFilePath = "C:\\Users\\kssamake\\Desktop\\Monapi\\apitirage\\listePostulant.xlsx";
+        String numero="";
 
         long start = System.currentTimeMillis();//l'heure de debut d'importation
 
         try {
-            FileInputStream inputStrean = new FileInputStream(excelFilePath);
-            Workbook workbook = new XSSFWorkbook(inputStrean);
+            Workbook workbook = new XSSFWorkbook(fichier.getInputStream());
             Sheet firstSheet=workbook.getSheetAt(0);
             Iterator<Row> rowIterator=firstSheet.iterator();
             rowIterator.next();
@@ -40,25 +37,26 @@ public class PostulantExcelimport {
                     int columnIndex=nextCell.getColumnIndex();
                     switch (columnIndex){
                         case 0:
-                            nom=nextCell.getStringCellValue();
-                            System.out.println(nom);
-                            break;
-                        case 1:
-                            prenom=nextCell.getStringCellValue();
-                            System.out.println(prenom);
-                            break;
-                        case 2:
-                            numero=(long)nextCell.getNumericCellValue();
-                            System.out.println(numero);
-                            break;
-                        case 3:
                             mail=nextCell.getStringCellValue();
                             System.out.println(mail);
                             break;
+                        case 1:
+                            nom=nextCell.getStringCellValue();
+                            System.out.println(nom);
+                            break;
+                        case 2:
+                            numero=nextCell.getStringCellValue();
+                            System.out.println(numero);
+
+                            break;
+                        case 3:
+                            prenom=nextCell.getStringCellValue();
+                            System.out.println(prenom);
+                            break;
+
                     }
-                    //postulantList.add(new Postulant(nom_postulant, prenom_postulant, numero_postulant, email_postulant));
                 }
-                postulantList.add(new Postulant(nom,prenom,numero,mail));
+                postulantList.add(new Postulant(mail,nom,numero,prenom));
             }
             workbook.close();
             long end = System.currentTimeMillis();//l'heure de fin
@@ -66,7 +64,6 @@ public class PostulantExcelimport {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return  postulantList;
     }
 }

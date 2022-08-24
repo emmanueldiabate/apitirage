@@ -3,9 +3,11 @@ package com.binomeapi.apitirage.controller;
 import com.binomeapi.apitirage.modele.Listpost;
 import com.binomeapi.apitirage.modele.Posttirer;
 import com.binomeapi.apitirage.modele.Postulant;
+import com.binomeapi.apitirage.repository.ListpostRepository;
 import com.binomeapi.apitirage.service.ListpostService;
 import com.binomeapi.apitirage.service.PostulantService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -16,16 +18,14 @@ import java.util.List;
 @AllArgsConstructor
 public class ListpostController implements Serializable {
 
-    private final ListpostService listpostService;
+    @Autowired
+    ListpostRepository listpostRepository;
 
-    @PostMapping("/importer")
-    public Listpost ajouter(@RequestBody Listpost listpost){
+    PostulantService postulantService;
 
-        return listpostService.importer(listpost);
+    @PostMapping("/add/{libelle}")
+    public List<Postulant> liste(){
+        return postulantService.lister();
     }
 
-    @GetMapping("/afficher")
-    public List<Listpost> lire(){
-        return listpostService.lire();
-    }
 }

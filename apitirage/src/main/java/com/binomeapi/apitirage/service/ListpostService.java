@@ -5,9 +5,11 @@ import com.binomeapi.apitirage.modele.Listpost;
 import java.util.List;
 
 public interface ListpostService {
+    Listpost creer(Listpost listpost);
 
-    Listpost importer(Listpost listpost);
+    List<Listpost> lister();
 
-    List<Listpost> lire();
+    Listpost trouverListeParLibelle(String libelle);
+
 
 }
