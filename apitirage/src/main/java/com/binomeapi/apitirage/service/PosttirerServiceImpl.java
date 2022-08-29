@@ -21,41 +21,15 @@ public class PosttirerServiceImpl implements PosttirerService{
         return posttirerRepository.findAll();
     }
 
-    @Override
-    public Posttirer Modifier(Posttirer posttirer, Long id) {
-        return null;
-    }
-
-    @Override
+   @Override
     public Posttirer ajouter(Posttirer posttirer) {
         return posttirerRepository.save(posttirer);
     }
 
     @Override
-    public int creer(Long id_post, String mail, String nom, String numero, String prenom, Long id_tirage) {
-        return posttirerRepository.INSERTPOSTTIRE(id_post, mail, nom, numero, prenom, id_tirage);
-    }
-
-  /*  @Autowired
-    PosttirerRepository posttirerRepository;
-
-    @Override
-    public List<Posttirer> lister() {
-        return posttirerRepository.findAll();
-    }
-
-    @Override
-    public Posttirer Modifier(Posttirer posttirer, Long id) {
-        return null;
-    }
-
-    @Override
-    public Posttirer ajouter(Posttirer posttirer) {
+    public Posttirer Save(Posttirer posttirer) {
         return posttirerRepository.save(posttirer);
     }
 
-    @Override
-    public int creer(Long id_post, String email, String nom, String numero, String prenom, Long id_tirage) {
-        return posttirerRepository.INSERTPOSTTIRE();
-    }*/
+
 }

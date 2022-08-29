@@ -17,6 +17,10 @@ public class Posttirer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_postTirer;
+    private String mail;
+    private String nom;
+    private String numero;
+    private String prenom;
 
     @ManyToOne
     private Tirage tirage;

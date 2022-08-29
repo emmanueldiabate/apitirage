@@ -10,8 +10,9 @@ import java.util.List;
 public interface PostulantRepository extends JpaRepository<Postulant, Long> {
 
     //SQL pour tirage
-    @Query(value = "SELECT * FROM postulant WHERE id_post = :id_post", nativeQuery = true)
-    List<Postulant> FINDIDPOSTLIST(Long id_listPost);
+    @Query(value = "SELECT * FROM postulant WHERE id_list_post =id_list_post", nativeQuery = true)
+    //List<Postulant> FINDIDPOSTLIST(Long id_post);
+    List<Postulant> findByIdPost(Long id_list_post);
 
-    List<Postulant> findByListePostulant(Listpost postulant);
+    List<Postulant> findByListpost(Listpost listpost);
 }

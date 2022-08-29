@@ -11,10 +11,9 @@ import javax.transaction.Transactional;
 public interface ListpostRepository extends JpaRepository<Listpost, Long> {
 
     Listpost findByLibelle(String libelle);
-
     @Modifying
     @Transactional
     @Query(value = "insert into postulant(id_listPost) VALUES (:id_listPost);", nativeQuery = true)
-    public int INSERTIDLIST(@Param("id_Liste_postulant") Long id_listPost);
+    public int INSERTIDLIST(@Param("id_listPost") Long id_listPost);
 
 }

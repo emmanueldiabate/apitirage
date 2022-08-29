@@ -37,30 +37,31 @@ public class PostulantExcelimport{
                     int columnIndex=nextCell.getColumnIndex();
                     switch (columnIndex){
                         case 0:
-                            mail=nextCell.getStringCellValue();
-                            System.out.println(mail);
-                            break;
-                        case 1:
                             nom=nextCell.getStringCellValue();
                             System.out.println(nom);
+                            break;
+                        case 1:
+                            prenom=nextCell.getStringCellValue();
+                            System.out.println(prenom);
                             break;
                         case 2:
                             numero=nextCell.getStringCellValue();
                             System.out.println(numero);
-
                             break;
                         case 3:
-                            prenom=nextCell.getStringCellValue();
-                            System.out.println(prenom);
+                            mail=nextCell.getStringCellValue();
+                            System.out.println(mail);
                             break;
 
                     }
                 }
                 postulantList.add(new Postulant(mail,nom,numero,prenom));
             }
+
             workbook.close();
             long end = System.currentTimeMillis();//l'heure de fin
             System.out.printf("Import done in %d ms\n", (end - start));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

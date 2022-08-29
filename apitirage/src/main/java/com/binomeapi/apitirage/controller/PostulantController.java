@@ -22,15 +22,15 @@ import java.util.List;
 public class PostulantController {
 
     @Autowired
-    PostulantService postulantService;
+    private final PostulantService postulantService;
     ListpostService listpostService;
 
 
     @PostMapping("/add")
-    public Postulant Ajouter(Postulant postulant){
-
-        return this.postulantService.Ajout(postulant);
+    public Postulant create(@RequestBody Postulant postulant){
+        return postulantService.creer(postulant);
     }
+
     @GetMapping("/liste")
     public List<Postulant> lister(){
 
@@ -46,7 +46,7 @@ public class PostulantController {
 
         List<Postulant> postulantList = excelimporter.excelImport(fichier);
         if(postulantList.size()==0){
-            return "Fichier vide";
+            return "Votre fichier est vide";
         }else{
             listpost.setDate(new Date());
             Listpost l = listpostService.creer(listpost);
@@ -56,16 +56,8 @@ public class PostulantController {
 
             }
             postulantService.enregistrer(postulantList);
-            return "import succsfully";
+            return "importer avec succes";
         }
-      /*  if(postulantList != null){
-            postulantRepository.saveAll(postulantList);
-            //   postulantService.enregistrer(postulantList);
-
-            return "Importer avec succes";
-        }else{
-            return "Eurrer d'importation !";
-        }*/
 
     }
 

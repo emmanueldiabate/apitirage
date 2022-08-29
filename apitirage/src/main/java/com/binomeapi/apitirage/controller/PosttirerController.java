@@ -20,7 +20,7 @@ public class PosttirerController {
     PosttirerService posttirerService;
 
     @GetMapping(value = "/afficherpostulanttire")
-    public int create(Long id_post,String mail,String nom,String numero,String prenom, Long id_tirage){
-        return posttirerService.creer(id_post, mail, nom, numero, prenom, id_tirage);
+    public List<Posttirer> list(){
+        return posttirerService.lister();
     }
 }

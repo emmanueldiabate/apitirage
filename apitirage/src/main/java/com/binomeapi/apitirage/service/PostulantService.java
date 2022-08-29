@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface PostulantService {
 
-    Postulant Ajout(Postulant postulant);
+    Postulant creer(Postulant postulant);
 
     List<Postulant> lister();
 
