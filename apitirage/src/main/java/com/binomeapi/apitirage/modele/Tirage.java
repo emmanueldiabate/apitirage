@@ -15,7 +15,7 @@ public class Tirage {
     private Long id_tirage;
     private String libelle;
     private Date date;
-  //  private Long nbPosTirer;
+    private Long nbPosTirer;
 
     @ManyToOne
     private Listpost listpost;

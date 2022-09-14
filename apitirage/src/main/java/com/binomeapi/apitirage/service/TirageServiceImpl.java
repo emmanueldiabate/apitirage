@@ -77,6 +77,20 @@ public class TirageServiceImpl implements TirageService{
         return list;
     }
 
+  @Override
+  public String nombre(String libelle) {
+    return tirageRepository.nombre(libelle);
+  }
+
+  @Override
+  public Iterable<Object[]> AfficherTirageParListe(Long id_listPost) {
+    return tirageRepository.AfficherTirageParListe(id_listPost);
+  }
+
+  @Override
+  public Long nbrePostTirer(Long id_tirage) {
+    return tirageRepository.nbrePostTirer(id_tirage);
+  }
 
 
 

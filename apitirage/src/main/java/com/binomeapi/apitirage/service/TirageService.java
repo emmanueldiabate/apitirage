@@ -19,5 +19,10 @@ public interface TirageService {
 
     List<Postulant> creer(Tirage tirage, List<Postulant> post, Long nbre);
 
+    String nombre(String libelle);
+
+    Iterable<Object[]> AfficherTirageParListe(Long id_listPost);
+
+    Long  nbrePostTirer(Long id_tirage);
 
 }
