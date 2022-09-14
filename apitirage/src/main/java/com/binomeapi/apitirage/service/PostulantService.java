@@ -23,4 +23,10 @@ public interface PostulantService {
 
     List<Postulant> postulantParListe(Listpost postulant);
 
+    Postulant modifier(Long id_post, Postulant postulant);
+
+    String supprimer(Long id_post);
+
+
+
 }

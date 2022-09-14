@@ -6,7 +6,7 @@ import com.binomeapi.apitirage.repository.PostulantRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.util.List;
 
@@ -20,11 +20,13 @@ public class PostulantServiceImpl implements PostulantService{
 
     @Override
     public Postulant creer(Postulant postulant) {
+
         return  this.postulantRepository.save(postulant);
     }
 
     @Override
     public List<Postulant> lister() {
+
         return postulantRepository.findAll();
     }
 
@@ -42,5 +44,24 @@ public class PostulantServiceImpl implements PostulantService{
     public List<Postulant> postulantParListe(Listpost listpost) {
 
         return postulantRepository.findByListpost(listpost);
+    }
+
+    @Override
+    public Postulant modifier(Long id_post, Postulant postulant) {
+        return postulantRepository.findById(id_post)
+                .map(p-> {
+                    p.setMail(postulant.getMail());
+                    p.setNom(postulant.getNom());
+                    p.setNumero(postulant.getNumero());
+                    p.setPrenom(postulant.getPrenom());
+                    p.setListpost(postulant.getListpost());
+                    return postulantRepository.save(postulant);
+                }).orElseThrow(() -> new RuntimeException("Postulant introuvable !"));
+    }
+
+    @Override
+    public String supprimer(Long id_post) {
+          postulantRepository.deleteById(id_post);
+          return "Postulant supprimer avec succes !";
     }
 }

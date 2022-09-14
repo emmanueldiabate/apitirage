@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/Tirage")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200/")
 public class TirageController {
 
     @Autowired
@@ -38,6 +39,7 @@ public class TirageController {
         Listpost listpost = listpostService.trouverListeParLibelle(libelle);
         List<Postulant> post = postulantService.Trouverid_Liste_postulant(listpost.getId_listPost());
 
+        tirage.setNbPosTirer(nbre);
         List<Postulant> lp = tirageService.creer(tirage,post,nbre);
         Long id_tirage = tirageService.trouverTirageParLibelle(tirage.getLibelle()).getId_tirage();
         for (Postulant p : lp) {
@@ -52,4 +54,24 @@ public class TirageController {
     public List<Tirage> list(){
         return tirageService.lister();
     }
+
+
+
+
+  @GetMapping("/affichernbtirage/{libelle}")
+  String nombre(@PathVariable String libelle) {
+
+      return tirageService.nombre(libelle);
+  }
+
+  @GetMapping("/tirageParList/{id_listPost}")
+  Iterable<Object[]> AfficherTirageParListe(@PathVariable Long id_listPost){
+      return tirageService.AfficherTirageParListe(id_listPost);
+
+  }
+
+  @GetMapping("/nbrePostTirer/{id_tirage}")
+  Long  myNbrePost(@PathVariable Long id_tirage){
+    return tirageService.nbrePostTirer(id_tirage);
+  }
 }

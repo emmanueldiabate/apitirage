@@ -11,5 +11,7 @@ public interface ListpostService {
 
     Listpost trouverListeParLibelle(String libelle);
 
+    Iterable<Object[]> trverIdList(Long id_list_post);
 
+    //String nombre(String libelle);
 }

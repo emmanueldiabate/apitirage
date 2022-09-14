@@ -27,4 +27,14 @@ public class ListpostServiceImpl implements ListpostService{
     public Listpost trouverListeParLibelle(String libelle) {
         return listpostRepository.findByLibelle(libelle);
     }
+
+  @Override
+  public Iterable<Object[]> trverIdList(Long id_list_post) {
+    return listpostRepository.trverIdList(id_list_post);
+  }
+
+  /*@Override
+  public String nombre(String libelle) {
+    return listpostRepository.nombre(libelle);
+  }*/
 }
